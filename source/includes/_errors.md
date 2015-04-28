@@ -1,4 +1,4 @@
-# Errors
+## Errors
 
 > HTTP Status Code Summary
 

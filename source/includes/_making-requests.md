@@ -1,4 +1,4 @@
-# Making Requests
+## Making Requests
 
 ``` http
 GET /users HTTP/1.1

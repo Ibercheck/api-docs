@@ -1,4 +1,4 @@
-# Hypermedia
+## Hypermedia
 
 The Ibercheck API is organized around
 [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) and

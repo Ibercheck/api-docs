@@ -1,4 +1,4 @@
-# Authentication
+## Authentication
 
 > To retrieve the `access_token` use this code:
 
