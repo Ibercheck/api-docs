@@ -10,6 +10,10 @@ set :markdown_engine, :redcarpet
 
 set :markdown, :fenced_code_blocks => true, :smartypants => true, :disable_indented_code_blocks => true, :prettify => true, :tables => true, :with_toc_data => true, :no_intra_emphasis => true
 
+config[:file_watcher_ignore] += [ /.idea\// ]
+
+activate :livereload
+
 # Activate the syntax highlighter
 activate :syntax
 
