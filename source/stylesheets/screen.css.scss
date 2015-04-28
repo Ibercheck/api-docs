@@ -37,6 +37,19 @@ html, body {
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
 
+.logo {
+  display: block;
+  text-align: center;
+}
+
+.logo-link {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 20px 0;
+  color: white;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
