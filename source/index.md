@@ -14,6 +14,7 @@ includes:
   - making-requests
   - errors
   - versioning
+  - hypermedia
 
 search: true
 ---
