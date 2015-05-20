@@ -15,6 +15,7 @@ includes:
   - errors
   - versioning
   - hypermedia
+  - tutorial
 
 search: true
 ---
