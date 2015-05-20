@@ -6,7 +6,7 @@ language_tabs:
   - shell
 
 toc_footers:
-  - <a href='#'>API Playground</a>
+  - <a href="playground">API Playground</a>
 
 includes:
   - introduction
