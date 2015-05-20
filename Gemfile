@@ -11,3 +11,4 @@ gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
 
 gem 'rake', '~> 10.4.2'
 gem 'therubyracer', '~> 0.12.1', platforms: :ruby
+gem 'travis', '~> 1.7.6'
