@@ -1,0 +1,1136 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Ibercheck API</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["http","shell"]);
+        });
+      </script>
+  </head>
+
+  <body class="index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <p class="logo">
+        <a href="https://www.ibercheck.com" class="logo-link">
+          IBERCHECK
+        </a>
+      </p>
+        <div class="lang-selector">
+              <a href="#" data-language-name="http">http</a>
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href="playground">API Playground</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        
+          <h1 id="introduction">Introduction</h1>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer YOUR IBERCHECK ACCESS TOKEN</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.ibercheck.com</span>
+</code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.ibercheck.com/users"</span> <span class="se">\</span>
+ -H <span class="s2">"accept: application/vnd.ibercheck.v1+json"</span> <span class="se">\</span>
+ -H <span class="s2">"authorization: Bearer YOUR IBERCHECK ACCESS TOKEN"</span>
+</code></pre>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer YOUR IBERCHECK ACCESS TOKEN</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api_dev.ibercheck.net</span>
+</code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/users"</span> <span class="se">\</span>
+ -H <span class="s2">"accept: application/vnd.ibercheck.v1+json"</span> <span class="se">\</span>
+ -H <span class="s2">"authorization: Bearer YOUR IBERCHECK ACCESS TOKEN"</span>
+</code></pre>
+
+<p>Welcome to the Ibercheck API documentation. The Ibercheck API is organized around
+<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a> and
+<a href="#hypermedia">Hypermedia</a>.
+Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors.
+We use built-in HTTP features, like HTTP authentication and HTTP verbs, which can be understood by off-the-shelf HTTP
+clients, and we support cross-origin resource sharing to allow you to interact securely with our API from a client-side
+web application
+(though you should remember that you should never expose your API credentials in any public website&rsquo;s client-side code).
+JSON will be returned in all responses from the API, including errors.</p>
+
+<p>The first thing you will have to find out is the correct API endpoint to use.</p>
+
+<ul>
+<li>For production environments, use <strong><a href="https://api.ibercheck.com">https://api.ibercheck.com</a></strong>.</li>
+<li>For development/testing/staging environments, use <strong><a href="https://api_dev.ibercheck.net">https://api_dev.ibercheck.net</a></strong>.</li>
+</ul>
+
+<p>Note that all API calls to be <a href="#authentication">authenticated</a>.</p>
+
+          <h2 id="authentication">Authentication</h2>
+
+<h3 id="affiliate-authentication">Affiliate authentication</h3>
+
+<blockquote>
+<p>To retrieve the <code class="prettyprint">access_token</code> use this code:</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/oauth</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api_dev.ibercheck.net</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"grant_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client_credentials"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR AFFILIATE NAME"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR AFFILIATE SECRET"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/oauth"</span> <span class="se">\</span>
+ -H <span class="s2">"content-type: application/json"</span> <span class="se">\</span>
+ -H <span class="s2">"accept: application/vnd.ibercheck.v1+json"</span> <span class="se">\</span>
+ -X POST <span class="se">\</span>
+ -d <span class="s1">'{"grant_type": "client_credentials","client_id": "YOUR AFFILIATE NAME","client_secret": "YOUR AFFILIATE SECRET"}'</span>
+</code></pre>
+
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">YOUR AFFILIATE NAME</code> and <code class="prettyprint">YOUR AFFILIATE SECRET</code> with your <code class="prettyprint">affiliate name</code> and
+ <code class="prettyprint">affiliate secret</code> present in the welcome pack sent to you.</p>
+</blockquote>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="s2">"YOUR IBERCHECK ACCESS TOKEN"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="mi">3600</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"token_type"</span><span class="p">:</span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"scope"</span><span class="p">:</span><span class="s2">"ROLE_AFFILIATE create:user read:email"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight shell"><code><span class="s1">'{
+  "access_token":"YOUR IBERCHECK ACCESS TOKEN",
+  "expires_in":3600,
+  "token_type":"bearer",
+  "scope":"ROLE_AFFILIATE create:user read:email"
+}'</span>
+</code></pre>
+
+<p>You authenticate to the Ibercheck API by exchanging your <em>Affiliate secret key</em> with an <em>OAuth2</em> <code class="prettyprint">access_token</code>.
+You can manage your <em>Affiliate secret key</em> from your account. Your <em>Affiliate secret key</em> carry many privileges,
+so be sure to keep them secret!</p>
+
+<p>All API requests must be made over HTTPS. Calls made over plain HTTP will fail. You must authenticate for all requests.</p>
+
+<h3 id="user-authentication">User authentication</h3>
+
+<p>For to do operations related with an user (i.e. make a new report request, update profile) the affiliate must operate
+on behalf the user.</p>
+
+<p>The way of Ibercheck API allow to impersonate a given user is through an access_token present in the user resource when
+the user is created or when is retrieved from the API.</p>
+
+          <h2 id="making-requests">Making Requests</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer YOUR IBERCHECK ACCESS TOKEN</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api_dev.ibercheck.net</span>
+</code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/users"</span> <span class="se">\</span>
+ -H <span class="s2">"accept: application/vnd.ibercheck.v1+json"</span> <span class="se">\</span>
+ -H <span class="s2">"authorization: Bearer YOUR IBERCHECK ACCESS TOKEN"</span>
+</code></pre>
+
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">YOUR IBERCHECK ACCESS TOKEN</code> with the <code class="prettyprint">access_token</code> obtained in <a href="#authentication">Authentication</a>.</p>
+</blockquote>
+
+<aside class="warning">
+  If you do not set the **Accept** header, you might retrieve old API formats.
+</aside>
+
+<p>When you write your own Travis CI client, please keep the following in mind:</p>
+
+<ul>
+<li>Always set the <strong>User-Agent</strong> header. This header is not required right now, but will be in the near future.
+Assuming your client is called &ldquo;My Client&rdquo;, and it&rsquo;s current version is 1.0.0, a good value would be <code class="prettyprint">MyClient/1.0.0</code>.</li>
+<li>Always set the <strong>Accept</strong> header to <code class="prettyprint">application/vnd.ibercheck.v1+json</code>.</li>
+<li>You must replace <code class="prettyprint">YOUR IBERCHECK ACCESS TOKEN</code> with the <code class="prettyprint">access_token</code> obtained in <a href="#authentication">Authentication</a>. </li>
+</ul>
+
+<p>Any existing client library should take care of these for you.</p>
+
+          <h2 id="errors">Errors</h2>
+
+<blockquote>
+<p>HTTP Status Code Summary</p>
+
+<p><strong>200</strong> - OK - Success!</p>
+
+<p><strong>201</strong> - OK - Resource created.</p>
+
+<p><strong>400</strong> - Bad Request - The request was invalid or cannot be otherwise served.</p>
+
+<p><strong>401</strong> - Unauthorized - Authentication credentials were missing or incorrect.</p>
+
+<p><strong>403</strong> - Forbidden - There is no permission for access to the resource.</p>
+
+<p><strong>404</strong> - Not Found - The requested item doesn&rsquo;t exist.</p>
+
+<p><strong>409</strong> - Conflict - Another resource already exists for the given parameters.</p>
+
+<p><strong>422</strong> - Failed validation - Some input parameter is invalid. See the <code class="prettyprint">validation_messages</code> for details.</p>
+
+<p><strong>500</strong> - Internal Server Error - Something went wrong on Ibercheck&rsquo;s end.</p>
+</blockquote>
+
+<p>Ibercheck uses conventional HTTP response codes to indicate success or failure of an API request.
+In general, codes in the 2xx range indicate success, codes in the 4xx range indicate an error that resulted from the
+provided information (e.g. a required parameter was missing, etc.), and codes in the 5xx range indicate an error with
+Ibercheck&rsquo;s servers.
+Not all errors map cleanly onto HTTP response codes, however. When a request is valid but does not complete successfully
+(e.g. a required was parameter was missing), we return a 422 error code.</p>
+
+<p>Also Ibercheck uses the media type <a href="https://tools.ietf.org/html/draft-ietf-appsawg-http-problem">application/problem+json</a>
+for represent the error response body.</p>
+
+<h3 id="attributes">Attributes</h3>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">422</span> <span class="ne">Unprocessable Entity</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/problem+json</span>
+
+{
+  "validation_messages": {
+    "celular_phone": {
+      "phoneNumberNoMatch": "The input does not match a phone number format"
+    },
+    "national_id": {
+      "DNI_NotValid": "Número de DNI inválido",
+      "NIE_NotValid": "Número de NIE inválido"
+    },
+    "email": [
+      "This is not a valid email"
+    ]
+  },
+  "type": "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html",
+  "title": "Unprocessable Entity",
+  "status": 422,
+  "detail": "Failed Validation"
+}
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>detail</td>
+<td>An human readable explanation specific to this occurrence of the problem.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The HTTP status code generated by the origin server for this occurrence of the problem.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>A short, human-readable summary of the problem type.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>An absolute URI that identifies the problem type.</td>
+</tr>
+<tr>
+<td>validation_messages</td>
+<td><em>Optional</em>. Input validation error detail.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="versioning">Versioning</h2>
+
+<blockquote>
+<p>v1 request</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api_dev.ibercheck.net</span>
+</code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/users"</span> <span class="se">\</span>
+ -H <span class="s2">"accept: application/vnd.ibercheck.v1+json"</span>
+</code></pre>
+
+<blockquote>
+<p>v2 request</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v2+json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api_dev.ibercheck.net</span>
+</code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/users"</span> <span class="se">\</span>
+ -H <span class="s2">"accept: application/vnd.ibercheck.v2+json"</span>
+</code></pre>
+
+<p>When we make backwards-incompatible changes to the API, we release new versions. The current version is <code class="prettyprint">v1</code>.
+Read our API upgrades guide to see our API changelog and to learn more about backwards compatibility.</p>
+
+<p>API versions are released with changes in the negotiated media type.
+So version 1 is <code class="prettyprint">application/vnd.ibercheck.v1+json</code> and version 2 will be <code class="prettyprint">application/vnd.ibercheck.v2+json</code></p>
+
+          <h2 id="hypermedia">Hypermedia</h2>
+
+<p>The Ibercheck API is organized around
+<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a> and
+<a href="http://en.wikipedia.org/wiki/HATEOAS">HATEOAS</a>. Almost every resource representation will contain a <code class="prettyprint">_links</code> section
+with links to operations with the resource itself.</p>
+
+<p>Ibercheck API follows the <a href="https://tools.ietf.org/html/draft-kelly-json-hal-06">Hypertext Application Language</a> model
+for hypermedia representation.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/user"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"total_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/user/1"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"sale"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/user/1/sale"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"surnames"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">   
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>_links</td>
+<td>Collection of links related and available to the resource itself.</td>
+</tr>
+<tr>
+<td>_embedded</td>
+<td>Collection of related resources &ldquo;embedded&rdquo; in the same response.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+  Always use the `links` provided for navigate across the API. Never try to guess the URI.
+</aside>
+
+<p>The link collection is dynamically generated for each resource state. So you may expect to disappear links and appear
+new ones adapted for the resource state (i.e. a payment action will disappear from a Sale already pay)</p>
+
+          <h1 id="tutorial">Tutorial</h1>
+
+<p>Reports are asynchronous transactions. This means it&rsquo;s necessary to register a request. After registering your
+request you will be posted about the progress via webhooks.</p>
+
+<h2 id="authentication">Authentication</h2>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/oauth</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api_dev.ibercheck.net</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"grant_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client_credentials"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR AFFILIATE NAME"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR AFFILIATE SECRET"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/oauth"</span> <span class="se">\</span>
+ -H <span class="s2">"content-type: application/json"</span> <span class="se">\</span>
+ -H <span class="s2">"accept: application/vnd.ibercheck.v1+json"</span> <span class="se">\</span>
+ -X POST <span class="se">\</span>
+ -d <span class="s1">'{"grant_type": "client_credentials","client_id": "YOUR AFFILIATE NAME","client_secret": "YOUR AFFILIATE SECRET"}'</span>
+</code></pre>
+
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">YOUR AFFILIATE NAME</code> and <code class="prettyprint">YOUR AFFILIATE SECRET</code> with your <code class="prettyprint">affiliate name</code> and
+ <code class="prettyprint">affiliate secret</code> present in the welcome pack sent to you.</p>
+</blockquote>
+
+<p>Exchange your <em>Affiliate secret key</em> with an <em>OAuth2</em> <code class="prettyprint">access_token</code>.</p>
+
+<h3 id="request">Request</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>grant_type</td>
+<td><code class="prettyprint">OAuth2</code> grant type. Always <code class="prettyprint">client_credentials</code>.</td>
+</tr>
+<tr>
+<td>client_id</td>
+<td>Your <code class="prettyprint">affiliate name</code></td>
+</tr>
+<tr>
+<td>client_secret</td>
+<td>Your <code class="prettyprint">affiliate secret key</code></td>
+</tr>
+<tr>
+<td>scope</td>
+<td><em>Optional</em> OAuth2 scopes by default <code class="prettyprint">ROLE_AFFILIATE create:user read:email</code></td>
+</tr>
+</tbody></table>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="s2">"YOUR IBERCHECK ACCESS TOKEN"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="mi">3600</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"token_type"</span><span class="p">:</span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"scope"</span><span class="p">:</span><span class="s2">"ROLE_AFFILIATE create:user read:email"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight shell"><code><span class="s1">'{
+  "access_token":"YOUR IBERCHECK ACCESS TOKEN",
+  "expires_in":3600,
+  "token_type":"bearer",
+  "scope":"ROLE_AFFILIATE create:user read:email"
+}'</span>
+</code></pre>
+
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>access_token</td>
+<td><em>OAuth2</em> <code class="prettyprint">access_token</code>. This value must be present in every authenticated API call.</td>
+</tr>
+<tr>
+<td>expires_in</td>
+<td>Number of miliseconds before the token become invalid.</td>
+</tr>
+<tr>
+<td>token_type</td>
+<td><em>OAuth2</em> <code class="prettyprint">token type</code>. Always wil be <code class="prettyprint">bearer</code>.</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>OAuth2 scopes granted by default <code class="prettyprint">ROLE_AFFILIATE create:user read:email</code>. May differ from the scopes requested.</td>
+</tr>
+</tbody></table>
+
+<h2 id="register-a-new-user">Register a new user</h2>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/user</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api_dev.ibercheck.net</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer YOUR IBERCHECK ACCESS TOKEN</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"surnames"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john_doe@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"mobile_phone"</span><span class="p">:</span><span class="w"> </span><span class="mi">666777888</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"national_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/user"</span> <span class="se">\</span>
+ -H <span class="s2">"content-type: application/json"</span> <span class="se">\</span>
+ -H <span class="s2">"accept: application/vnd.ibercheck.v1+json"</span> <span class="se">\</span>
+ -H <span class="s2">"authorization: Bearer YOUR IBERCHECK ACCESS TOKEN"</span> <span class="se">\</span>
+ -X POST <span class="se">\</span>
+ -d <span class="s1">'{"name": "John","surnames": "Doe","email": "john_doe@example.com","mobile_phone": 666777888,"national_id": "12345678Z"}'</span>
+</code></pre>
+
+<p>Almost everything created in the API is related with an user in some way. So this step guides you about how to register
+a new user in the API.</p>
+
+<h3 id="request">Request</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>User first name.</td>
+</tr>
+<tr>
+<td>surnames</td>
+<td>User last name, surnames or family name.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>User email address.</td>
+</tr>
+<tr>
+<td>mobile_phone</td>
+<td><em>Optional</em> User mobile phone (only spanish number)</td>
+</tr>
+<tr>
+<td>national_id</td>
+<td><em>Optional</em> User Spanish ID (NIF or NIE)</td>
+</tr>
+</tbody></table>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+
+{
+  "_links": {
+    "self": {
+      "href": "https://api_dev.ibercheck.net/user/1"
+    },
+    "sale": {
+      "href": "https://api_dev.ibercheck.net/user/1/sale"
+    }
+  },
+  "name": "John",
+  "surnames": "Doe",
+  "email": "john_doe@example.com",
+  "mobile_phone": 666777888,
+  "national_id": "12345678Z",
+  "access_token": {
+    "access_token": "USER ACCESS ACCESS TOKEN"
+  }
+}
+</code></pre>
+<pre class="highlight shell"><code><span class="s1">'{
+  "_links": {
+    "self": {
+      "href": "https://api_dev.ibercheck.net/user/1"
+    },
+    "sale": {
+      "href": "https://api_dev.ibercheck.net/user/1/sale"
+    }
+  },
+  "name": "John",
+  "surnames": "Doe",
+  "email": "john_doe@example.com",
+  "mobile_phone": 666777888,
+  "national_id": "12345678Z",
+  "access_token": {
+    "access_token": "USER ACCESS ACCESS TOKEN"
+  }
+}'</span>
+</code></pre>
+
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>_links.self</td>
+<td>Reference to the user created.</td>
+</tr>
+<tr>
+<td>_links.sales</td>
+<td>Link for create and read user sales.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>User first name.</td>
+</tr>
+<tr>
+<td>surnames</td>
+<td>User last name, surnames or family name.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>User email address.</td>
+</tr>
+<tr>
+<td>mobile_phone</td>
+<td><em>Optional</em> User celular phone (only spanish number)</td>
+</tr>
+<tr>
+<td>national_id</td>
+<td><em>Optional</em> User Spanish ID (NIF or NIE)</td>
+</tr>
+<tr>
+<td>access_token</td>
+<td><em>OAuth2</em> attributes for use the API on behalf the user.</td>
+</tr>
+</tbody></table>
+
+<h2 id="register-a-new-sale">Register a new sale</h2>
+
+<blockquote>
+<p>URI must be the same as the link named <code class="prettyprint">Sales</code> (_links.sales) present in the user resource.</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/user/1/sale</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api_dev.ibercheck.net</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer USER ACCESS ACCESS TOKEN</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"orderNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCD1234"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autocheck"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDEFGHIJKLMNOPQRSTUWXYZ1234567890"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/user/1/sale"</span> <span class="se">\</span>
+ -H <span class="s2">"content-type: application/json"</span> <span class="se">\</span>
+ -H <span class="s2">"accept: application/vnd.ibercheck.v1+json"</span> <span class="se">\</span>
+ -H <span class="s2">"authorization: Bearer USER ACCESS ACCESS TOKEN"</span> <span class="se">\</span>
+ -X POST <span class="se">\</span>
+ -d <span class="s1">'{"orderNumber": "ABCD1234","product": "autocheck","hash": "ABCDEFGHIJKLMNOPQRSTUWXYZ1234567890"}'</span>
+</code></pre>
+
+<p>For to register a new sale we need first a <a href="#register-a-new-user">registered user</a>.</p>
+
+<h3 id="request">Request</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderNumber</td>
+<td>Custom unique identification number.</td>
+</tr>
+<tr>
+<td>product</td>
+<td>Product mnemonic.</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>Security function for sign the transaction.</td>
+</tr>
+</tbody></table>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+
+{
+  "_links": {
+    "self": {
+      "href": "https://api_dev.ibercheck.net/sale/1"
+    },
+    "report-request": {
+      "href": "https://api_dev.ibercheck.net/sale/1/report-request"
+    }
+  },
+  "orderNumber": "ABCD1234",
+  "_embedded": {
+    "buyer": {
+      "_links": {
+        "self": {
+          "href": "https://api_dev.ibercheck.net/user/1"
+        },
+        "sale": {
+          "href": "https://api_dev.ibercheck.net/user/1/sale"
+        }
+      },
+      "name": "John",
+      "surnames": "Doe",
+      "email": "john_doe@example.com",
+      "mobile_phone": 666777888,
+      "national_id": "12345678Z",
+      "access_token": {
+        "access_token": "string"
+      }
+    },
+    "product": {
+      "_links": {
+        "self": {
+          "href": "https://api_dev.ibercheck.net/product/1"
+        },
+      },
+      "mnemonic": "autocheck"
+    }
+  }
+}
+</code></pre>
+<pre class="highlight shell"><code><span class="s1">'{
+  "_links": {
+    "self": {
+      "href": "https://api_dev.ibercheck.net/sale/1"
+    },
+    "report-request": {
+      "href": "https://api_dev.ibercheck.net/sale/1/report-request"
+    }
+  },
+  "orderNumber": "ABCD1234",
+  "_embedded": {
+    "buyer": {
+      "_links": {
+        "self": {
+          "href": "https://api_dev.ibercheck.net/user/1"
+        },
+        "sale": {
+          "href": "https://api_dev.ibercheck.net/user/1/sale"
+        }
+      },
+      "name": "John",
+      "surnames": "Doe",
+      "email": "john_doe@example.com",
+      "mobile_phone": 666777888,
+      "national_id": "12345678Z",
+      "access_token": {
+        "access_token": "string"
+      }
+    },
+    "product": {
+      "_links": {
+        "self": {
+          "href": "https://api_dev.ibercheck.net/product/1"
+        },
+      },
+      "mnemonic": "autocheck"
+    }
+  }
+}'</span>
+</code></pre>
+
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>_links.self</td>
+<td>Reference to the sale created.</td>
+</tr>
+<tr>
+<td>_links.report-request</td>
+<td>Link for create a new report request.</td>
+</tr>
+<tr>
+<td>orderNumber</td>
+<td>Custom order number used when the sale was created.</td>
+</tr>
+<tr>
+<td>_embedded.buyer</td>
+<td>embedded user resource proprietary of the sale.</td>
+</tr>
+<tr>
+<td>_embedded.product</td>
+<td>embedded product resource.</td>
+</tr>
+</tbody></table>
+
+<h2 id="register-a-new-report-request">Register a new report request</h2>
+
+<blockquote>
+<p>URI must be the same as the link named <code class="prettyprint">report-request</code> (_links.report-request) present in the sale resource.</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/sale/1/report-request</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api_dev.ibercheck.net</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer USER ACCESS ACCESS TOKEN</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autocheck"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"purpose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autocheck API tutorial example"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/sale/1/report-request"</span> <span class="se">\</span>
+ -H <span class="s2">"content-type: application/json"</span> <span class="se">\</span>
+ -H <span class="s2">"accept: application/vnd.ibercheck.v1+json"</span> <span class="se">\</span>
+ -H <span class="s2">"authorization: Bearer USER ACCESS ACCESS TOKEN"</span> <span class="se">\</span>
+ -X POST <span class="se">\</span>
+ -d <span class="s1">'{"type": "autocheck","purpose": "Autocheck API tutorial example"}'</span>
+</code></pre>
+
+<p>For to register a new report request we need first a <a href="#register-a-new-sale">sale</a>.</p>
+
+<h3 id="request">Request</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>Report type. Can be <code class="prettyprint">autocheck</code> or <code class="prettyprint">check_a_tercero</code>.</td>
+</tr>
+<tr>
+<td>purpose</td>
+<td>Purpose of the report.</td>
+</tr>
+<tr>
+<td>pcd_name</td>
+<td><em>Optional</em> Person consulted name. Only when report type is <code class="prettyprint">check_a_tercero</code>.</td>
+</tr>
+<tr>
+<td>pcd_surnames</td>
+<td><em>Optional</em> Person consulted surnames. Only when report type is <code class="prettyprint">check_a_tercero</code>.</td>
+</tr>
+<tr>
+<td>pcd_email</td>
+<td><em>Optional</em> Person consulted email address. Only when report type is <code class="prettyprint">check_a_tercero</code>.</td>
+</tr>
+</tbody></table>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+
+{
+  "_links": {
+    "self": {
+      "href": "https://api_dev.ibercheck.net/report-request/1"
+    },
+    "authorization ": {
+      "href": "https://api_dev.ibercheck.net/report-request/1/authorize"
+    },
+    "authorization_document": {
+      "href": "https://api_dev.ibercheck.net/report-request/1/authorize/document"
+    }
+  },
+  "type": "autocheck",
+  "purpose": "Autocheck API tutorial example",
+  "status": "pending_authorization",
+  "_embedded": {
+    "person_consulting": {
+      "_links": {
+        "self": {
+          "href": "https://api_dev.ibercheck.net/user/1"
+        }
+      },
+      "id": "1",
+      "name": "John",
+      "surnames": "Doe"
+    },
+    "person_consulted": {
+      "_links": {
+        "self": {
+          "href": "https://api_dev.ibercheck.net/user/1"
+        }
+      },
+      "id": "1",
+      "name": "John",
+      "surnames": "Doe"
+    }
+  }
+}
+</code></pre>
+<pre class="highlight shell"><code><span class="s1">'{
+  "_links": {
+    "self": {
+      "href": "https://api_dev.ibercheck.net/report-request/1"
+    },
+    "authorization ": {
+      "href": "https://api_dev.ibercheck.net/report-request/1/authorize"
+    },
+    "authorization_document": {
+      "href": "https://api_dev.ibercheck.net/report-request/1/authorize/document"
+    }
+  },
+  "type": "autocheck",
+  "purpose": "Autocheck API tutorial example",
+  "status": "pending_authorization",
+  "_embedded": {
+    "person_consulting": {
+      "_links": {
+        "self": {
+          "href": "https://api_dev.ibercheck.net/user/1"
+        }
+      },
+      "id": "1",
+      "name": "John",
+      "surnames": "Doe"
+    },
+    "person_consulted": {
+      "_links": {
+        "self": {
+          "href": "https://api_dev.ibercheck.net/user/1"
+        }
+      },
+      "id": "1",
+      "name": "John",
+      "surnames": "Doe"
+    }
+  }
+}'</span>
+</code></pre>
+
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>_links.self</td>
+<td>Reference to the sale created.</td>
+</tr>
+<tr>
+<td>_links.authorization</td>
+<td>Finish authentication process.</td>
+</tr>
+<tr>
+<td>_links.authorization_document</td>
+<td>Upload person consulted authentication document files.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>Report type. Can be <code class="prettyprint">autocheck</code> or <code class="prettyprint">check_a_tercero</code>.</td>
+</tr>
+<tr>
+<td>purpose</td>
+<td>Purpose of the report.</td>
+</tr>
+<tr>
+<td>_embedded.person_consulting</td>
+<td>embedded user resource for the user requesting the report.</td>
+</tr>
+<tr>
+<td>_embedded.person_consulted</td>
+<td>embedded user resource for the person consulted.</td>
+</tr>
+</tbody></table>
+
+<h2 id="upload-a-document-to-the-report-request">Upload a document to the report request</h2>
+
+<blockquote>
+<p>URI must be the same as the link named <code class="prettyprint">authorization_document</code> (_links.authorization_document) present in the
+ report request resource.</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST /report-request/1/authorize/document HTTP/1.1
+User-Agent: MyClient/1.0.0
+Accept: application/vnd.ibercheck.v1+json
+Content-Type: multipart/form-data
+Host: api_dev.ibercheck.net
+Authorization: Bearer USER ACCESS ACCESS TOKEN
+
+&lt;file upload&gt;
+</code></pre>
+
+<p>For to upload a document we need first a <a href="#register-a-new-report-request">report request</a>.</p>
+
+<h3 id="request">Request</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>file</td>
+<td>File to upload.</td>
+</tr>
+</tbody></table>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+
+{
+  "_links": {
+    "self": {
+      "href": "https://api_dev.ibercheck.net/report-request/1"
+    },
+    "authorization ": {
+      "href": "https://api_dev.ibercheck.net/report-request/1/authorize"
+    },
+    "authorization_document": {
+      "href": "https://api_dev.ibercheck.net/report-request/1/authorize/document"
+    }
+  },
+  "type": "autocheck",
+  "purpose": "Autocheck API tutorial example",
+  "status": "pending_authorization",
+  "_embedded": {
+    "person_consulting": {
+    },
+    "person_consulted": {
+    }
+  }
+}
+</code></pre>
+
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>_links.self</td>
+<td>Reference to the sale created.</td>
+</tr>
+<tr>
+<td>_links.authorization</td>
+<td>Finish authentication process.</td>
+</tr>
+<tr>
+<td>_links.authorization_document</td>
+<td>Upload person consulted authentication document files.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>Report type. Can be <code class="prettyprint">autocheck</code> or <code class="prettyprint">check_a_tercero</code>.</td>
+</tr>
+<tr>
+<td>purpose</td>
+<td>Purpose of the report.</td>
+</tr>
+<tr>
+<td>_embedded.person_consulting</td>
+<td>embedded user resource for the user requesting the report.</td>
+</tr>
+<tr>
+<td>_embedded.person_consulted</td>
+<td>embedded user resource for the person consulted.</td>
+</tr>
+</tbody></table>
+
+<h2 id="complete-report-request-authentication">Complete report request authentication</h2>
+
+<blockquote>
+<p>URI must be the same as the link named <code class="prettyprint">authorization</code> (_links.authorization) present in the
+ report request resource.</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/report-request/1/authorize</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api_dev.ibercheck.net</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer USER ACCESS ACCESS TOKEN</span>
+
+&lt;body is empty&gt;
+</code></pre>
+
+<p>For mark a report request as authenticated we need first upload <a href="#upload-a-document-to-the-report-request">user documents</a>.</p>
+
+<h3 id="request">Request</h3>
+
+<ul>
+<li>Request body is empty</li>
+</ul>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+
+{
+  "_links": {
+    "self": {
+      "href": "https://api_dev.ibercheck.net/report-request/1"
+    },
+    "authorization ": {
+      "href": "https://api_dev.ibercheck.net/report-request/1/authorize"
+    },
+    "authorization_document": {
+      "href": "https://api_dev.ibercheck.net/report-request/1/authorize/document"
+    }
+  },
+  "type": "autocheck",
+  "purpose": "Autocheck API tutorial example",
+  "status": "pending_authorization",
+  "_embedded": {
+    "person_consulting": {
+    },
+    "person_consulted": {
+    }
+  }
+}
+</code></pre>
+
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>_links.self</td>
+<td>Reference to the sale created.</td>
+</tr>
+<tr>
+<td>_links.authorization</td>
+<td>Finish authentication process.</td>
+</tr>
+<tr>
+<td>_links.authorization_document</td>
+<td>Upload person consulted authentication document files.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>Report type. Can be <code class="prettyprint">autocheck</code> or <code class="prettyprint">check_a_tercero</code>.</td>
+</tr>
+<tr>
+<td>purpose</td>
+<td>Purpose of the report.</td>
+</tr>
+<tr>
+<td>_embedded.person_consulting</td>
+<td>embedded user resource for the user requesting the report.</td>
+</tr>
+<tr>
+<td>_embedded.person_consulted</td>
+<td>embedded user resource for the person consulted.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="http">http</a>
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
