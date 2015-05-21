@@ -1,6 +1,6 @@
 # About this repository #
 
-This is the documentation site for Ibercheck API! (http://www.ibercheck.com/docs/api)
+This is the documentation site for Ibercheck API! (http://www.ibercheck.com/docs/api/)
 
 ## How to contribute
 
