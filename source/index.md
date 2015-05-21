@@ -6,7 +6,7 @@ language_tabs:
   - shell
 
 toc_footers:
-  - <a href="playground">API Playground</a>
+  - <a href="https://www.ibercheck.com/docs/api/playground/">API Playground</a>
 
 includes:
   - introduction
