@@ -97,7 +97,7 @@ JSON will be returned in all responses from the API, including errors.</p>
 <h3 id="affiliate-authentication">Affiliate authentication</h3>
 
 <blockquote>
-<p>To retrieve the <code class="prettyprint">access_token</code> use this code:</p>
+<p>For to retrieve the <code class="prettyprint">access_token</code> use this code:</p>
 </blockquote>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/oauth</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
@@ -365,7 +365,7 @@ new ones adapted for the resource state (i.e. a payment action will disappear fr
           <h1 id="tutorial">Tutorial</h1>
 
 <p>Reports are asynchronous transactions. This means it&rsquo;s necessary to register a request. After registering your
-request you will be posted about the progress via webhooks.</p>
+request you will be posted about the progress via WebHooks.</p>
 
 <h2 id="authentication">Authentication</h2>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/oauth</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -451,7 +451,7 @@ request you will be posted about the progress via webhooks.</p>
 </tr>
 <tr>
 <td>expires_in</td>
-<td>Number of miliseconds before the token become invalid.</td>
+<td>Number of milliseconds before the token become invalid.</td>
 </tr>
 <tr>
 <td>token_type</td>
@@ -591,7 +591,7 @@ a new user in the API.</p>
 </tr>
 <tr>
 <td>mobile_phone</td>
-<td><em>Optional</em> User celular phone (only spanish number)</td>
+<td><em>Optional</em> User mobile phone (only spanish number)</td>
 </tr>
 <tr>
 <td>national_id</td>
