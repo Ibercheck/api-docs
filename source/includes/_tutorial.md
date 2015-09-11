@@ -108,7 +108,7 @@ Attribute     | Description
 name          | User first name.
 surnames      | User last name, surnames or family name.
 email         | User email address.
-mobile_phone | *Optional* User mobile phone (only spanish number)
+mobile_phone  | *Optional* User mobile phone (only spanish number)
 national_id   | *Optional* User Spanish ID (NIF or NIE)
 
 ```http
@@ -158,16 +158,16 @@ Content-Type: application/vnd.ibercheck.v1+json
 
 ### Response
 
-Attribute     | Description
------------   | -----------
+Attribute      | Description
+-----------    | -----------
 \_links.self   | Reference to the user created.
 \_links.sales  | Link for create and read user sales.
-name          | User first name.
-surnames      | User last name, surnames or family name.
-email         | User email address.
-mobile_phone  | *Optional* User mobile phone (only spanish number)
-national_id   | *Optional* User Spanish ID (NIF or NIE)
-access_token  | *OAuth2* attributes for use the API on behalf the user.
+name           | User first name.
+surnames       | User last name, surnames or family name.
+email          | User email address.
+mobile_phone   | *Optional* User mobile phone (only spanish number)
+national_id    | *Optional* User Spanish ID (NIF or NIE)
+access_token   | *OAuth2* attributes for use the API on behalf the user.
 
 ## Register a new sale
 
@@ -298,11 +298,11 @@ Content-Type: application/vnd.ibercheck.v1+json
 
 Attribute              | Description
 -----------            | -----------
-\_links.self            | Reference to the sale created.
-\_links.report-request  | Link for create a new report request.
+\_links.self           | Reference to the sale created.
+\_links.report-request | Link for create a new report request.
 orderNumber            | Custom order number used when the sale was created.
-\_embedded.buyer        | embedded user resource proprietary of the sale.
-\_embedded.product      | embedded product resource.
+\_embedded.buyer       | embedded user resource proprietary of the sale.
+\_embedded.product     | embedded product resource.
 
 ## Register a new report request
 
@@ -430,13 +430,13 @@ Content-Type: application/vnd.ibercheck.v1+json
 
 ### Response
 
-Attribute                     | Description
------------                   | -----------
+Attribute                      | Description
+-----------                    | -----------
 \_links.self                   | Reference to the sale created.
 \_links.authorization          | Finish authentication process.
 \_links.authorization_document | Upload person consulted authentication document files.
-type                          | Report type. Can be `autocheck` or `check_a_tercero`.
-purpose                       | Purpose of the report.
+type                           | Report type. Can be `autocheck` or `check_a_tercero`.
+purpose                        | Purpose of the report.
 \_embedded.person_consulting   | embedded user resource for the user requesting the report.
 \_embedded.person_consulted    | embedded user resource for the person consulted.
 
@@ -494,13 +494,13 @@ Content-Type: application/vnd.ibercheck.v1+json
 
 ### Response
 
-Attribute                     | Description
------------                   | -----------
+Attribute                      | Description
+-----------                    | -----------
 \_links.self                   | Reference to the sale created.
 \_links.authorization          | Finish authentication process.
 \_links.authorization_document | Upload person consulted authentication document files.
-type                          | Report type. Can be `autocheck` or `check_a_tercero`.
-purpose                       | Purpose of the report.
+type                           | Report type. Can be `autocheck` or `check_a_tercero`.
+purpose                        | Purpose of the report.
 \_embedded.person_consulting   | embedded user resource for the user requesting the report.
 \_embedded.person_consulted    | embedded user resource for the person consulted.
 
@@ -556,12 +556,12 @@ Content-Type: application/vnd.ibercheck.v1+json
 
 ### Response
 
-Attribute                     | Description
------------                   | -----------
+Attribute                      | Description
+-----------                    | -----------
 \_links.self                   | Reference to the sale created.
 \_links.authorization          | Finish authentication process.
 \_links.authorization_document | Upload person consulted authentication document files.
-type                          | Report type. Can be `autocheck` or `check_a_tercero`.
-purpose                       | Purpose of the report.
+type                           | Report type. Can be `autocheck` or `check_a_tercero`.
+purpose                        | Purpose of the report.
 \_embedded.person_consulting   | embedded user resource for the user requesting the report.
 \_embedded.person_consulted    | embedded user resource for the person consulted.
