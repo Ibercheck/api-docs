@@ -106,9 +106,9 @@ JSON will be returned in all responses from the API, including errors.</p>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api_dev.ibercheck.net</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"grant_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client_credentials"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR AFFILIATE NAME"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR AFFILIATE SECRET"</span><span class="w">
+  </span><span class="nt">"grant_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client_credentials"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR AFFILIATE NAME"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"client_secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR AFFILIATE SECRET"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/oauth"</span> <span class="se">\</span>
@@ -126,10 +126,10 @@ JSON will be returned in all responses from the API, including errors.</p>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="s2">"YOUR IBERCHECK ACCESS TOKEN"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="mi">3600</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"token_type"</span><span class="p">:</span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"scope"</span><span class="p">:</span><span class="s2">"ROLE_AFFILIATE create:user read:email"</span><span class="w">
+  </span><span class="nt">"access_token"</span><span class="p">:</span><span class="s2">"YOUR IBERCHECK ACCESS TOKEN"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expires_in"</span><span class="p">:</span><span class="mi">3600</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"token_type"</span><span class="p">:</span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"scope"</span><span class="p">:</span><span class="s2">"ROLE_AFFILIATE create:user read:email"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight shell"><code><span class="s1">'{
@@ -313,26 +313,26 @@ with links to operations with the resource itself.</p>
 <p>Ibercheck API follows the <a href="https://tools.ietf.org/html/draft-kelly-json-hal-06">Hypertext Application Language</a> model
 for hypermedia representation.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/user"</span><span class="w">
+  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/user"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"total_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nt">"total_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/user/1"</span><span class="w">
+        </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/user/1"</span><span class="w">
           </span><span class="p">},</span><span class="w">
-          </span><span class="s2">"sale"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/user/1/sale"</span><span class="w">
+          </span><span class="nt">"sale"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/user/1/sale"</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"surnames"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"surnames"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">   
@@ -375,9 +375,9 @@ request you will be posted about the progress via webhooks.</p>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api_dev.ibercheck.net</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"grant_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client_credentials"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR AFFILIATE NAME"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR AFFILIATE SECRET"</span><span class="w">
+  </span><span class="nt">"grant_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client_credentials"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR AFFILIATE NAME"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"client_secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR AFFILIATE SECRET"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/oauth"</span> <span class="se">\</span>
@@ -423,10 +423,10 @@ request you will be posted about the progress via webhooks.</p>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="s2">"YOUR IBERCHECK ACCESS TOKEN"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="mi">3600</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"token_type"</span><span class="p">:</span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"scope"</span><span class="p">:</span><span class="s2">"ROLE_AFFILIATE create:user read:email"</span><span class="w">
+  </span><span class="nt">"access_token"</span><span class="p">:</span><span class="s2">"YOUR IBERCHECK ACCESS TOKEN"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expires_in"</span><span class="p">:</span><span class="mi">3600</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"token_type"</span><span class="p">:</span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"scope"</span><span class="p">:</span><span class="s2">"ROLE_AFFILIATE create:user read:email"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight shell"><code><span class="s1">'{
@@ -472,11 +472,11 @@ request you will be posted about the progress via webhooks.</p>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer YOUR IBERCHECK ACCESS TOKEN</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"surnames"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john_doe@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"mobile_phone"</span><span class="p">:</span><span class="w"> </span><span class="mi">666777888</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"national_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678Z"</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"surnames"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john_doe@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mobile_phone"</span><span class="p">:</span><span class="w"> </span><span class="mi">666777888</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"national_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/user"</span> <span class="se">\</span>
@@ -616,9 +616,9 @@ a new user in the API.</p>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer USER ACCESS ACCESS TOKEN</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"orderNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCD1234"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autocheck"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDEFGHIJKLMNOPQRSTUWXYZ1234567890"</span><span class="w">
+  </span><span class="nt">"orderNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCD1234"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autocheck"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDEFGHIJKLMNOPQRSTUWXYZ1234567890"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/user/1/sale"</span> <span class="se">\</span>
@@ -779,8 +779,8 @@ a new user in the API.</p>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer USER ACCESS ACCESS TOKEN</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autocheck"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"purpose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autocheck API tutorial example"</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autocheck"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"purpose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autocheck API tutorial example"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/sale/1/report-request"</span> <span class="se">\</span>
