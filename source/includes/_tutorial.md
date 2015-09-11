@@ -1,6 +1,6 @@
 # Tutorial
 Reports are asynchronous transactions. This means it's necessary to register a request. After registering your
-request you will be posted about the progress via webhooks.
+request you will be posted about the progress via WebHooks.
 
 ## Authentication
 
@@ -66,7 +66,7 @@ Content-Type: application/json
 Attribute    | Description
 -----------  | -----------
 access_token | *OAuth2* `access_token`. This value must be present in every authenticated API call.
-expires_in   | Number of miliseconds before the token become invalid.
+expires_in   | Number of milliseconds before the token become invalid.
 token_type   | *OAuth2* `token type`. Always wil be `bearer`.
 scope        | OAuth2 scopes granted by default `ROLE_AFFILIATE create:user read:email`. May differ from the scopes requested.
 
@@ -165,7 +165,7 @@ Attribute     | Description
 name          | User first name.
 surnames      | User last name, surnames or family name.
 email         | User email address.
-mobile_phone | *Optional* User celular phone (only spanish number)
+mobile_phone  | *Optional* User mobile phone (only spanish number)
 national_id   | *Optional* User Spanish ID (NIF or NIE)
 access_token  | *OAuth2* attributes for use the API on behalf the user.
 

@@ -2,7 +2,7 @@
 
 ### Affiliate authentication
 
-> To retrieve the `access_token` use this code:
+> For to retrieve the `access_token` use this code:
 
 ```http
 POST /oauth HTTP/1.1
