@@ -1126,6 +1126,152 @@ Authorization: Bearer USER ACCESS ACCESS TOKEN
 </tr>
 </tbody></table>
 
+          <h1 id="webhooks">WebHooks</h1>
+
+<blockquote>
+<p>To retrieve the <code class="prettyprint">access_token</code> use this code:</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">PATCH</span> <span class="nn">/affiliate/YOUR_AFFILIATE_NAME</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.ibercheck.v1+json</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api_dev.ibercheck.net</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer YOUR IBERCHECK ACCESS TOKEN</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"URL TO YOUR ENDPOINT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api_dev.ibercheck.net/affiliate/YOUR_AFFILIATE_NAME"</span> <span class="se">\</span>
+ -H <span class="s2">"content-type: application/json"</span> <span class="se">\</span>
+ -H <span class="s2">"accept: application/vnd.ibercheck.v1+json"</span> <span class="se">\</span>
+ -H <span class="s2">"authorization: Bearer YOUR IBERCHECK ACCESS TOKEN"</span> <span class="se">\</span>
+ -X PATCH <span class="se">\</span>
+ -d <span class="s1">'{"webhook_url": "URL TO YOUR ENDPOINT"}'</span>
+</code></pre>
+
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">YOUR_AFFILIATE_NAME</code> and <code class="prettyprint">YOUR IBERCHECK ACCESS TOKEN</code> with the values obtained after perform
+the Authentication.</p>
+</blockquote>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/hal+json</span>
+
+{
+  "name": "YOUR_AFFILIATE_NAME",
+  "template": "ibercheck",
+  "sso_enabled": false,
+  "capitalize_enabled": true,
+  "enabled": true,
+  "webhook_url": "URL TO YOUR ENDPOINT",
+  "webhook_format": "api_v1"
+  "_links": {
+    "self": {
+      "href": "https://api_dev.ibercheck.net/affiliate/YOUR_AFFILIATE_NAME"
+    },
+    "sale": {
+      "href": "https://api_dev.ibercheck.net/sale"
+    },
+    "product": {
+      "href": "https://api_dev.ibercheck.net/product"
+    },
+    "user": {
+      "href": "https://api_dev.ibercheck.net/user"
+    }
+  }
+}
+</code></pre>
+<pre class="highlight shell"><code><span class="s1">'{
+   "name": "YOUR_AFFILIATE_NAME",
+   "template": "ibercheck",
+   "sso_enabled": false,
+   "capitalize_enabled": true,
+   "enabled": true,
+   "webhook_url": "URL TO YOUR ENDPOINT",
+   "webhook_format": "api_v1"
+   "_links": {
+     "self": {
+       "href": "https://api_dev.ibercheck.net/affiliate/YOUR_AFFILIATE_NAME"
+     },
+     "sale": {
+       "href": "https://api_dev.ibercheck.net/sale"
+     },
+     "product": {
+       "href": "https://api_dev.ibercheck.net/product"
+     },
+     "user": {
+       "href": "https://api_dev.ibercheck.net/user"
+     }
+   }
+ }'</span>
+</code></pre>
+
+<p>For to keep your system side up to date this API allows you to subscribe to business events through WebHooks.</p>
+
+<p>WebHooks are composed with the following properties.</p>
+
+<ul>
+<li>Header <code class="prettyprint">X-Ibercheck-Event</code> contains the event name.</li>
+<li>Header <code class="prettyprint">X-Ibercheck-Signature</code> contains the HMAC-256 hex digest of the body using the &ldquo;affiliate secret&rdquo; as key.</li>
+<li>Body contains the event payload. Usually match with any of the API GET responses.</li>
+</ul>
+
+<p>The following is a list of events implemented (Signatures has been created with the key <code class="prettyprint">s3cr3t</code>):</p>
+
+<h2 id="report-request-status-changed-event">Report request status changed event</h2>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/path/to/your/endpoint</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">Ibercheck Webhook</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">your.domain</span>
+<span class="na">X-Ibercheck-Event</span><span class="p">:</span> <span class="s">report-request_status_changed</span>
+<span class="na">X-Ibercheck-Signature</span><span class="p">:</span> <span class="s">a67bfec357d1429e7e0616bad8b5dd06b16165c1a9f268518dfbb401d3b508c3</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/report-request/1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"authorization "</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/report-request/1/authorize"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"authorization_document"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/report-request/1/authorize/document"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autocheck"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"purpose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autocheck API tutorial example"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending_authorization"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"person_consulting"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/user/1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"surnames"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"person_consulted"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/user/1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"surnames"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Name: <code class="prettyprint">report-request_status_changed</code></p>
+
+<p>Description: This event is triggered when the <code class="prettyprint">report-request</code> change his status.</p>
+
+<p>Payload: Same content as the response of <code class="prettyprint">/report-request/&lt;id&gt;</code></p>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
