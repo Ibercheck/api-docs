@@ -130,7 +130,7 @@ Content-Type: application/vnd.ibercheck.v1+json
   "mobile_phone": 666777888,
   "national_id": "12345678Z",
   "access_token": {
-    "access_token": "USER ACCESS ACCESS TOKEN"
+    "access_token": "USER ACCESS TOKEN"
   }
 }
 ```
@@ -151,7 +151,7 @@ Content-Type: application/vnd.ibercheck.v1+json
   "mobile_phone": 666777888,
   "national_id": "12345678Z",
   "access_token": {
-    "access_token": "USER ACCESS ACCESS TOKEN"
+    "access_token": "USER ACCESS TOKEN"
   }
 }'
 ```
@@ -179,7 +179,7 @@ User-Agent: MyClient/1.0.0
 Accept: application/vnd.ibercheck.v1+json
 Content-Type: application/json
 Host: api_dev.ibercheck.net
-Authorization: Bearer USER ACCESS ACCESS TOKEN
+Authorization: Bearer USER ACCESS TOKEN
 
 {
   "orderNumber": "ABCD1234",
@@ -192,7 +192,7 @@ Authorization: Bearer USER ACCESS ACCESS TOKEN
 curl "https://api_dev.ibercheck.net/user/1/sale" \
  -H "content-type: application/json" \
  -H "accept: application/vnd.ibercheck.v1+json" \
- -H "authorization: Bearer USER ACCESS ACCESS TOKEN" \
+ -H "authorization: Bearer USER ACCESS TOKEN" \
  -X POST \
  -d '{"orderNumber": "ABCD1234","product": "autocheck","hash": "ABCDEFGHIJKLMNOPQRSTUWXYZ1234567890"}'
 ```
@@ -314,7 +314,7 @@ User-Agent: MyClient/1.0.0
 Accept: application/vnd.ibercheck.v1+json
 Content-Type: application/json
 Host: api_dev.ibercheck.net
-Authorization: Bearer USER ACCESS ACCESS TOKEN
+Authorization: Bearer USER ACCESS TOKEN
 
 {
   "type": "autocheck",
@@ -326,7 +326,7 @@ Authorization: Bearer USER ACCESS ACCESS TOKEN
 curl "https://api_dev.ibercheck.net/sale/1/report-request" \
  -H "content-type: application/json" \
  -H "accept: application/vnd.ibercheck.v1+json" \
- -H "authorization: Bearer USER ACCESS ACCESS TOKEN" \
+ -H "authorization: Bearer USER ACCESS TOKEN" \
  -X POST \
  -d '{"type": "autocheck","purpose": "Autocheck API tutorial example"}'
 ```
@@ -451,7 +451,7 @@ User-Agent: MyClient/1.0.0
 Accept: application/vnd.ibercheck.v1+json
 Content-Type: multipart/form-data
 Host: api_dev.ibercheck.net
-Authorization: Bearer USER ACCESS ACCESS TOKEN
+Authorization: Bearer USER ACCESS TOKEN
 
 <file upload>
 ```
@@ -515,7 +515,7 @@ User-Agent: MyClient/1.0.0
 Accept: application/vnd.ibercheck.v1+json
 Content-Type: application/vnd.ibercheck.v1+json
 Host: api_dev.ibercheck.net
-Authorization: Bearer USER ACCESS ACCESS TOKEN
+Authorization: Bearer USER ACCESS TOKEN
 
 <body is empty>
 ```
