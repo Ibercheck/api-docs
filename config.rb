@@ -9,8 +9,6 @@ set :markdown,
     with_toc_data: true,
     no_intra_emphasis: true
 
-config[:file_watcher_ignore] += [ /.idea\// ]
-
 activate :livereload
 
 # Assets
