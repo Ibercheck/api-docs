@@ -27,8 +27,7 @@ Ibercheck's servers.
 Not all errors map cleanly onto HTTP response codes, however. When a request is valid but does not complete successfully
 (e.g. a required was parameter was missing), we return a 422 error code.
 
-Also Ibercheck uses the media type [application/problem+json](https://tools.ietf.org/html/draft-ietf-appsawg-http-problem)
-for represent the error response body.
+Error response body has the format defined by [RFC 7807](https://tools.ietf.org/html/rfc7807).
 
 ### Attributes
 
