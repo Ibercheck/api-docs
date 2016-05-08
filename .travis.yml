@@ -24,7 +24,7 @@ before_install:
 before_script:
   - if [[ $DO_DEPLOY == "true" ]]; then git config remote.origin.url https://github.com/Ibercheck/api-docs.git; fi
   - bundle exec rake prepare_build_dir
-  - bundle exec rake sync
+  - bundle exec rake sync_build_dir
 
 after_script:
   - if [[ $DO_DEPLOY == "true" ]]; then bundle exec rake publish ALLOW_DIRTY=true; fi
