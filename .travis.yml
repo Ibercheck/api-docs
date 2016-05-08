@@ -23,7 +23,7 @@ before_install:
 
 before_script:
   - if [[ $DO_DEPLOY == "true" ]]; then git config remote.origin.url https://github.com/Ibercheck/api-docs.git; fi
-  - bundle exec rake prepare_git_remote_in_build_dir
+  - bundle exec rake prepare_build_dir
   - bundle exec rake sync
 
 after_script:
