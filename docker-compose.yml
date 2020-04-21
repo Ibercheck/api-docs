@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  server:
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    volumes:
+      - ./source:/srv/slate/source
+    ports:
+      - "4567:4567"

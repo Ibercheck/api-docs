@@ -1,30 +1,23 @@
-sudo: false
-
 language: ruby
 
 rvm:
-  - 2.1.0
+  - 2.5
 
 cache: bundler
 
 env:
   global:
-    - DEPLOY_BRANCH=master
-    - GIT_NAME=Travis-CI
-    - GIT_EMAIL=$USER@$(hostname)
     - secure: YNHqULteWmDdOmxFruvoAHG/v9V2A82ESUbtB/hx3j3Q89UZYST/Yl5knAjZgggTkpzzUEactuVcJjmeZsoIhI5+Fu+zzCgXNML3keteIugYek3OGT6ZV31er1Yu9V+h5Ofc3fDoFkLZa47vGViSi+Wn8Mpx6V823sN3CIbtVH8BeAeU7jblEiAOuPuh1MqXP+EJjKGohO/9wR4FBbeoSatwX5U1TK0LKOJaCLQXpQzy71y+MbNPw6I7JOxA0PcnT+AJH6O5ChxxYES0kjIzg2KCRsr9coGPzSJq5U/2q0F8i7LYhj+fYkHW/LcdbwQolSnSegODS0MuHUTra1Xj0ZppnQFaCzw6KKjJs1tfunxwnHTJoaixD8qW5v6ifnHfCODL57adbPWviFnXhp5TiPLiJKalc7b43bdtBmcoKg1FzpulTlsXsyszyDn6BxDbJEGR6bJ7NF2t6xPwzHQcQes5eQUtFKfdHDgwUM0pp/1i32oW2doySApcMu046ZW93IMZoJ4Qw2y6k0jT0Mrd6FJE3mdKdHIcF0VKqkDtqqrf4BuU/Bej6GwWuiBbEB1gOypBXkhCWe9boiygiCYZIwnYzEFAp/sFjaOQAhX0TBMxcFlrAvJnV5b/f+WmUHn3IrDRfr+U2nGINWAPEL8krmkZNGT8UDwMPqCrD6JMENE=
 
-before_install:
-  - if [[ $DEPLOY_BRANCH == $TRAVIS_BRANCH && $TRAVIS_PULL_REQUEST == "false" ]]; then DO_DEPLOY=true; else DO_DEPLOY=false; fi
-  - git config --global user.name "$GIT_NAME"
-  - git config --global user.email "$GIT_EMAIL"
-  - git config --global credential.helper "store --file=$HOME/.git-credentials"
-  - echo https://$GH_TOKEN:@github.com > $HOME/.git-credentials
-
 before_script:
-  - if [[ $DO_DEPLOY == "true" ]]; then git config remote.origin.url https://github.com/Ibercheck/api-docs.git; fi
-  - bundle exec rake prepare_build_dir
-  - bundle exec rake sync_build_dir
+  - bundle exec middleman build
 
-after_script:
-  - if [[ $DO_DEPLOY == "true" ]]; then bundle exec rake publish ALLOW_DIRTY=true; fi
+deploy:
+  provider: pages
+  local_dir: build/
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  target_branch: gh-pages
+  on:
+    branch: master
