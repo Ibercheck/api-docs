@@ -1,13 +1,12 @@
 language: ruby
+os:
+  - linux
+dist: xenial
 
 rvm:
   - 2.5
 
 cache: bundler
-
-env:
-  global:
-    - secure: YNHqULteWmDdOmxFruvoAHG/v9V2A82ESUbtB/hx3j3Q89UZYST/Yl5knAjZgggTkpzzUEactuVcJjmeZsoIhI5+Fu+zzCgXNML3keteIugYek3OGT6ZV31er1Yu9V+h5Ofc3fDoFkLZa47vGViSi+Wn8Mpx6V823sN3CIbtVH8BeAeU7jblEiAOuPuh1MqXP+EJjKGohO/9wR4FBbeoSatwX5U1TK0LKOJaCLQXpQzy71y+MbNPw6I7JOxA0PcnT+AJH6O5ChxxYES0kjIzg2KCRsr9coGPzSJq5U/2q0F8i7LYhj+fYkHW/LcdbwQolSnSegODS0MuHUTra1Xj0ZppnQFaCzw6KKjJs1tfunxwnHTJoaixD8qW5v6ifnHfCODL57adbPWviFnXhp5TiPLiJKalc7b43bdtBmcoKg1FzpulTlsXsyszyDn6BxDbJEGR6bJ7NF2t6xPwzHQcQes5eQUtFKfdHDgwUM0pp/1i32oW2doySApcMu046ZW93IMZoJ4Qw2y6k0jT0Mrd6FJE3mdKdHIcF0VKqkDtqqrf4BuU/Bej6GwWuiBbEB1gOypBXkhCWe9boiygiCYZIwnYzEFAp/sFjaOQAhX0TBMxcFlrAvJnV5b/f+WmUHn3IrDRfr+U2nGINWAPEL8krmkZNGT8UDwMPqCrD6JMENE=
 
 script:
   - bundle exec middleman build
