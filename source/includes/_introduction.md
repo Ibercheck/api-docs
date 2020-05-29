@@ -41,6 +41,6 @@ JSON will be returned in all responses from the API, including errors.
 The first thing you will have to find out is the correct API endpoint to use.
 
 * For production environments, use **[https://api.ibercheck.com](https://api.ibercheck.com)**.
-* For development/testing/staging environments, use **[https://api_dev.ibercheck.net](https://api_dev.ibercheck.net)**.
+* For development/testing/staging environments, use **[https://api-dev.ibercheck.net](https://api_dev.ibercheck.net)**.
 
 Note that all API calls to be [authenticated](#authentication).
