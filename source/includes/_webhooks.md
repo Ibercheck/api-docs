@@ -104,7 +104,7 @@ X-Ibercheck-Signature: a67bfec357d1429e7e0616bad8b5dd06b16165c1a9f268518dfbb401d
     "self": {
       "href": "https://api_dev.ibercheck.net/report-request/1"
     },
-    "authorization ": {
+    "authorization": {
       "href": "https://api_dev.ibercheck.net/report-request/1/authorize"
     },
     "authorization_document": {
