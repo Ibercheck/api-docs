@@ -1279,7 +1279,7 @@ Authorization: Bearer USER ACCESS TOKEN
 </tbody></table>
 <h1 id='webhooks'>WebHooks</h1>
 <blockquote>
-<p>To retrieve the <code>access_token</code> use this code:</p>
+<p>To register a new <code>webhook</code> use this code:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">/affiliate/YOUR_AFFILIATE_NAME</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
@@ -1297,12 +1297,7 @@ Authorization: Bearer USER ACCESS TOKEN
  <span class="nt">-H</span> <span class="s2">"authorization: Bearer YOUR IBERCHECK ACCESS TOKEN"</span> <span class="se">\</span>
  <span class="nt">-X</span> PATCH <span class="se">\</span>
  <span class="nt">-d</span> <span class="s1">'{"webhook_url": "URL TO YOUR ENDPOINT"}'</span>
-</code></pre></div>
-<blockquote>
-<p>Make sure to replace <code>YOUR_AFFILIATE_NAME</code> and <code>YOUR IBERCHECK ACCESS TOKEN</code> with the values obtained after perform
-the Authentication.</p>
-</blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</code></pre></div><div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/hal+json</span>
 
 <span class="p">{</span><span class="w">
@@ -1312,7 +1307,7 @@ the Authentication.</p>
   </span><span class="nl">"capitalize_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nl">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nl">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"URL TO YOUR ENDPOINT"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"webhook_format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_v1"</span><span class="w">
+  </span><span class="nl">"webhook_format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_v1"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/affiliate/YOUR_AFFILIATE_NAME"</span><span class="w">
@@ -1375,7 +1370,7 @@ the Authentication.</p>
     </span><span class="nl">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/report-request/1"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"authorization "</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"authorization"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api_dev.ibercheck.net/report-request/1/authorize"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"authorization_document"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
