@@ -9,7 +9,7 @@ POST /oauth HTTP/1.1
 User-Agent: MyClient/1.0.0
 Accept: application/vnd.ibercheck.v1+json
 Content-Type: application/json
-Host: api_dev.ibercheck.net
+Host: api-dev.ibercheck.net
 
 {
   "grant_type": "client_credentials",
@@ -19,7 +19,7 @@ Host: api_dev.ibercheck.net
 ```
 
 ```shell
-curl "https://api_dev.ibercheck.net/oauth" \
+curl "https://api-dev.ibercheck.net/oauth" \
  -H "content-type: application/json" \
  -H "accept: application/vnd.ibercheck.v1+json" \
  -X POST \

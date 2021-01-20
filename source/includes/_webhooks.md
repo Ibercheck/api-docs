@@ -7,7 +7,7 @@ PATCH /affiliate/YOUR_AFFILIATE_NAME HTTP/1.1
 User-Agent: MyClient/1.0.0
 Accept: application/vnd.ibercheck.v1+json
 Content-Type: application/json
-Host: api_dev.ibercheck.net
+Host: api-dev.ibercheck.net
 Authorization: Bearer YOUR IBERCHECK ACCESS TOKEN
 
 {
@@ -16,7 +16,7 @@ Authorization: Bearer YOUR IBERCHECK ACCESS TOKEN
 ```
 
 ```shell
-curl "https://api_dev.ibercheck.net/affiliate/YOUR_AFFILIATE_NAME" \
+curl "https://api-dev.ibercheck.net/affiliate/YOUR_AFFILIATE_NAME" \
  -H "content-type: application/json" \
  -H "accept: application/vnd.ibercheck.v1+json" \
  -H "authorization: Bearer YOUR IBERCHECK ACCESS TOKEN" \
@@ -38,16 +38,16 @@ Content-Type: application/hal+json
   "webhook_format": "api_v1",
   "_links": {
     "self": {
-      "href": "https://api_dev.ibercheck.net/affiliate/YOUR_AFFILIATE_NAME"
+      "href": "https://api-dev.ibercheck.net/affiliate/YOUR_AFFILIATE_NAME"
     },
     "sale": {
-      "href": "https://api_dev.ibercheck.net/sale"
+      "href": "https://api-dev.ibercheck.net/sale"
     },
     "product": {
-      "href": "https://api_dev.ibercheck.net/product"
+      "href": "https://api-dev.ibercheck.net/product"
     },
     "user": {
-      "href": "https://api_dev.ibercheck.net/user"
+      "href": "https://api-dev.ibercheck.net/user"
     }
   }
 }
@@ -64,16 +64,16 @@ Content-Type: application/hal+json
    "webhook_format": "api_v1"
    "_links": {
      "self": {
-       "href": "https://api_dev.ibercheck.net/affiliate/YOUR_AFFILIATE_NAME"
+       "href": "https://api-dev.ibercheck.net/affiliate/YOUR_AFFILIATE_NAME"
      },
      "sale": {
-       "href": "https://api_dev.ibercheck.net/sale"
+       "href": "https://api-dev.ibercheck.net/sale"
      },
      "product": {
-       "href": "https://api_dev.ibercheck.net/product"
+       "href": "https://api-dev.ibercheck.net/product"
      },
      "user": {
-       "href": "https://api_dev.ibercheck.net/user"
+       "href": "https://api-dev.ibercheck.net/user"
      }
    }
  }'
@@ -102,13 +102,13 @@ X-Ibercheck-Signature: a67bfec357d1429e7e0616bad8b5dd06b16165c1a9f268518dfbb401d
 {
   "_links": {
     "self": {
-      "href": "https://api_dev.ibercheck.net/report-request/1"
+      "href": "https://api-dev.ibercheck.net/report-request/1"
     },
     "authorization": {
-      "href": "https://api_dev.ibercheck.net/report-request/1/authorize"
+      "href": "https://api-dev.ibercheck.net/report-request/1/authorize"
     },
     "authorization_document": {
-      "href": "https://api_dev.ibercheck.net/report-request/1/authorize/document"
+      "href": "https://api-dev.ibercheck.net/report-request/1/authorize/document"
     }
   },
   "type": "autocheck",
@@ -118,7 +118,7 @@ X-Ibercheck-Signature: a67bfec357d1429e7e0616bad8b5dd06b16165c1a9f268518dfbb401d
     "person_consulting": {
       "_links": {
         "self": {
-          "href": "https://api_dev.ibercheck.net/user/1"
+          "href": "https://api-dev.ibercheck.net/user/1"
         }
       },
       "id": "1",
@@ -128,7 +128,7 @@ X-Ibercheck-Signature: a67bfec357d1429e7e0616bad8b5dd06b16165c1a9f268518dfbb401d
     "person_consulted": {
       "_links": {
         "self": {
-          "href": "https://api_dev.ibercheck.net/user/1"
+          "href": "https://api-dev.ibercheck.net/user/1"
         }
       },
       "id": "1",

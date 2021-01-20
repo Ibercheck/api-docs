@@ -6,11 +6,11 @@
 GET /users HTTP/1.1
 User-Agent: MyClient/1.0.0
 Accept: application/vnd.ibercheck.v1+json
-Host: api_dev.ibercheck.net
+Host: api-dev.ibercheck.net
 ```
 
 ```shell
-curl "https://api_dev.ibercheck.net/users" \
+curl "https://api-dev.ibercheck.net/users" \
  -H "accept: application/vnd.ibercheck.v1+json"
 ```
 
@@ -20,11 +20,11 @@ curl "https://api_dev.ibercheck.net/users" \
 GET /users HTTP/1.1
 User-Agent: MyClient/1.0.0
 Accept: application/vnd.ibercheck.v2+json
-Host: api_dev.ibercheck.net
+Host: api-dev.ibercheck.net
 ```
 
 ```shell
-curl "https://api_dev.ibercheck.net/users" \
+curl "https://api-dev.ibercheck.net/users" \
  -H "accept: application/vnd.ibercheck.v2+json"
 ```
 

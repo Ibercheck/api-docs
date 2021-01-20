@@ -9,7 +9,7 @@ POST /oauth HTTP/1.1
 User-Agent: MyClient/1.0.0
 Accept: application/vnd.ibercheck.v1+json
 Content-Type: application/json
-Host: api_dev.ibercheck.net
+Host: api-dev.ibercheck.net
 
 {
   "grant_type": "client_credentials",
@@ -19,7 +19,7 @@ Host: api_dev.ibercheck.net
 ```
 
 ```shell
-curl "https://api_dev.ibercheck.net/oauth" \
+curl "https://api-dev.ibercheck.net/oauth" \
  -H "content-type: application/json" \
  -H "accept: application/vnd.ibercheck.v1+json" \
  -X POST \
@@ -77,7 +77,7 @@ POST /user HTTP/1.1
 User-Agent: MyClient/1.0.0
 Accept: application/vnd.ibercheck.v1+json
 Content-Type: application/json
-Host: api_dev.ibercheck.net
+Host: api-dev.ibercheck.net
 Authorization: Bearer YOUR IBERCHECK ACCESS TOKEN
 
 {
@@ -90,7 +90,7 @@ Authorization: Bearer YOUR IBERCHECK ACCESS TOKEN
 ```
 
 ```shell
-curl "https://api_dev.ibercheck.net/user" \
+curl "https://api-dev.ibercheck.net/user" \
  -H "content-type: application/json" \
  -H "accept: application/vnd.ibercheck.v1+json" \
  -H "authorization: Bearer YOUR IBERCHECK ACCESS TOKEN" \
@@ -118,10 +118,10 @@ Content-Type: application/vnd.ibercheck.v1+json
 {
   "_links": {
     "self": {
-      "href": "https://api_dev.ibercheck.net/user/1"
+      "href": "https://api-dev.ibercheck.net/user/1"
     },
     "sale": {
-      "href": "https://api_dev.ibercheck.net/user/1/sale"
+      "href": "https://api-dev.ibercheck.net/user/1/sale"
     }
   },
   "name": "John",
@@ -139,10 +139,10 @@ Content-Type: application/vnd.ibercheck.v1+json
 '{
   "_links": {
     "self": {
-      "href": "https://api_dev.ibercheck.net/user/1"
+      "href": "https://api-dev.ibercheck.net/user/1"
     },
     "sale": {
-      "href": "https://api_dev.ibercheck.net/user/1/sale"
+      "href": "https://api-dev.ibercheck.net/user/1/sale"
     }
   },
   "name": "John",
@@ -178,7 +178,7 @@ POST /user/1/sale HTTP/1.1
 User-Agent: MyClient/1.0.0
 Accept: application/vnd.ibercheck.v1+json
 Content-Type: application/json
-Host: api_dev.ibercheck.net
+Host: api-dev.ibercheck.net
 Authorization: Bearer USER ACCESS TOKEN
 
 {
@@ -189,7 +189,7 @@ Authorization: Bearer USER ACCESS TOKEN
 ```
 
 ```shell
-curl "https://api_dev.ibercheck.net/user/1/sale" \
+curl "https://api-dev.ibercheck.net/user/1/sale" \
  -H "content-type: application/json" \
  -H "accept: application/vnd.ibercheck.v1+json" \
  -H "authorization: Bearer USER ACCESS TOKEN" \
@@ -214,10 +214,10 @@ Content-Type: application/vnd.ibercheck.v1+json
 {
   "_links": {
     "self": {
-      "href": "https://api_dev.ibercheck.net/sale/1"
+      "href": "https://api-dev.ibercheck.net/sale/1"
     },
     "report-request": {
-      "href": "https://api_dev.ibercheck.net/sale/1/report-request"
+      "href": "https://api-dev.ibercheck.net/sale/1/report-request"
     }
   },
   "orderNumber": "ABCD1234",
@@ -225,10 +225,10 @@ Content-Type: application/vnd.ibercheck.v1+json
     "buyer": {
       "_links": {
         "self": {
-          "href": "https://api_dev.ibercheck.net/user/1"
+          "href": "https://api-dev.ibercheck.net/user/1"
         },
         "sale": {
-          "href": "https://api_dev.ibercheck.net/user/1/sale"
+          "href": "https://api-dev.ibercheck.net/user/1/sale"
         }
       },
       "name": "John",
@@ -243,7 +243,7 @@ Content-Type: application/vnd.ibercheck.v1+json
     "product": {
       "_links": {
         "self": {
-          "href": "https://api_dev.ibercheck.net/product/1"
+          "href": "https://api-dev.ibercheck.net/product/1"
         },
       },
       "mnemonic": "autocheck"
@@ -256,10 +256,10 @@ Content-Type: application/vnd.ibercheck.v1+json
 '{
   "_links": {
     "self": {
-      "href": "https://api_dev.ibercheck.net/sale/1"
+      "href": "https://api-dev.ibercheck.net/sale/1"
     },
     "report-request": {
-      "href": "https://api_dev.ibercheck.net/sale/1/report-request"
+      "href": "https://api-dev.ibercheck.net/sale/1/report-request"
     }
   },
   "orderNumber": "ABCD1234",
@@ -267,10 +267,10 @@ Content-Type: application/vnd.ibercheck.v1+json
     "buyer": {
       "_links": {
         "self": {
-          "href": "https://api_dev.ibercheck.net/user/1"
+          "href": "https://api-dev.ibercheck.net/user/1"
         },
         "sale": {
-          "href": "https://api_dev.ibercheck.net/user/1/sale"
+          "href": "https://api-dev.ibercheck.net/user/1/sale"
         }
       },
       "name": "John",
@@ -285,7 +285,7 @@ Content-Type: application/vnd.ibercheck.v1+json
     "product": {
       "_links": {
         "self": {
-          "href": "https://api_dev.ibercheck.net/product/1"
+          "href": "https://api-dev.ibercheck.net/product/1"
         },
       },
       "mnemonic": "autocheck"
@@ -313,7 +313,7 @@ POST /sale/1/report-request HTTP/1.1
 User-Agent: MyClient/1.0.0
 Accept: application/vnd.ibercheck.v1+json
 Content-Type: application/json
-Host: api_dev.ibercheck.net
+Host: api-dev.ibercheck.net
 Authorization: Bearer USER ACCESS TOKEN
 
 {
@@ -323,7 +323,7 @@ Authorization: Bearer USER ACCESS TOKEN
 ```
 
 ```shell
-curl "https://api_dev.ibercheck.net/sale/1/report-request" \
+curl "https://api-dev.ibercheck.net/sale/1/report-request" \
  -H "content-type: application/json" \
  -H "accept: application/vnd.ibercheck.v1+json" \
  -H "authorization: Bearer USER ACCESS TOKEN" \
@@ -350,13 +350,13 @@ Content-Type: application/vnd.ibercheck.v1+json
 {
   "_links": {
     "self": {
-      "href": "https://api_dev.ibercheck.net/report-request/1"
+      "href": "https://api-dev.ibercheck.net/report-request/1"
     },
     "authorization ": {
-      "href": "https://api_dev.ibercheck.net/report-request/1/authorize"
+      "href": "https://api-dev.ibercheck.net/report-request/1/authorize"
     },
     "authorization_document": {
-      "href": "https://api_dev.ibercheck.net/report-request/1/authorize/document"
+      "href": "https://api-dev.ibercheck.net/report-request/1/authorize/document"
     }
   },
   "type": "autocheck",
@@ -366,7 +366,7 @@ Content-Type: application/vnd.ibercheck.v1+json
     "person_consulting": {
       "_links": {
         "self": {
-          "href": "https://api_dev.ibercheck.net/user/1"
+          "href": "https://api-dev.ibercheck.net/user/1"
         }
       },
       "id": "1",
@@ -376,7 +376,7 @@ Content-Type: application/vnd.ibercheck.v1+json
     "person_consulted": {
       "_links": {
         "self": {
-          "href": "https://api_dev.ibercheck.net/user/1"
+          "href": "https://api-dev.ibercheck.net/user/1"
         }
       },
       "id": "1",
@@ -391,13 +391,13 @@ Content-Type: application/vnd.ibercheck.v1+json
 '{
   "_links": {
     "self": {
-      "href": "https://api_dev.ibercheck.net/report-request/1"
+      "href": "https://api-dev.ibercheck.net/report-request/1"
     },
     "authorization ": {
-      "href": "https://api_dev.ibercheck.net/report-request/1/authorize"
+      "href": "https://api-dev.ibercheck.net/report-request/1/authorize"
     },
     "authorization_document": {
-      "href": "https://api_dev.ibercheck.net/report-request/1/authorize/document"
+      "href": "https://api-dev.ibercheck.net/report-request/1/authorize/document"
     }
   },
   "type": "autocheck",
@@ -407,7 +407,7 @@ Content-Type: application/vnd.ibercheck.v1+json
     "person_consulting": {
       "_links": {
         "self": {
-          "href": "https://api_dev.ibercheck.net/user/1"
+          "href": "https://api-dev.ibercheck.net/user/1"
         }
       },
       "id": "1",
@@ -417,7 +417,7 @@ Content-Type: application/vnd.ibercheck.v1+json
     "person_consulted": {
       "_links": {
         "self": {
-          "href": "https://api_dev.ibercheck.net/user/1"
+          "href": "https://api-dev.ibercheck.net/user/1"
         }
       },
       "id": "1",
@@ -450,7 +450,7 @@ POST /report-request/1/authorize/document HTTP/1.1
 User-Agent: MyClient/1.0.0
 Accept: application/vnd.ibercheck.v1+json
 Content-Type: multipart/form-data
-Host: api_dev.ibercheck.net
+Host: api-dev.ibercheck.net
 Authorization: Bearer USER ACCESS TOKEN
 
 <file upload>
@@ -471,13 +471,13 @@ Content-Type: application/vnd.ibercheck.v1+json
 {
   "_links": {
     "self": {
-      "href": "https://api_dev.ibercheck.net/report-request/1"
+      "href": "https://api-dev.ibercheck.net/report-request/1"
     },
     "authorization ": {
-      "href": "https://api_dev.ibercheck.net/report-request/1/authorize"
+      "href": "https://api-dev.ibercheck.net/report-request/1/authorize"
     },
     "authorization_document": {
-      "href": "https://api_dev.ibercheck.net/report-request/1/authorize/document"
+      "href": "https://api-dev.ibercheck.net/report-request/1/authorize/document"
     }
   },
   "type": "autocheck",
@@ -514,7 +514,7 @@ POST /report-request/1/authorize HTTP/1.1
 User-Agent: MyClient/1.0.0
 Accept: application/vnd.ibercheck.v1+json
 Content-Type: application/vnd.ibercheck.v1+json
-Host: api_dev.ibercheck.net
+Host: api-dev.ibercheck.net
 Authorization: Bearer USER ACCESS TOKEN
 
 <body is empty>
@@ -533,13 +533,13 @@ Content-Type: application/vnd.ibercheck.v1+json
 {
   "_links": {
     "self": {
-      "href": "https://api_dev.ibercheck.net/report-request/1"
+      "href": "https://api-dev.ibercheck.net/report-request/1"
     },
     "authorization ": {
-      "href": "https://api_dev.ibercheck.net/report-request/1/authorize"
+      "href": "https://api-dev.ibercheck.net/report-request/1/authorize"
     },
     "authorization_document": {
-      "href": "https://api_dev.ibercheck.net/report-request/1/authorize/document"
+      "href": "https://api-dev.ibercheck.net/report-request/1/authorize/document"
     }
   },
   "type": "autocheck",

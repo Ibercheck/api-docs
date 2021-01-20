@@ -12,7 +12,7 @@ for hypermedia representation.
 {
   "_links": {
     "self": {
-      "href": "https://api_dev.ibercheck.net/user"
+      "href": "https://api-dev.ibercheck.net/user"
     }
   },
   "total_items": 1,
@@ -21,10 +21,10 @@ for hypermedia representation.
       {
         "_links": {
           "self": {
-            "href": "https://api_dev.ibercheck.net/user/1"
+            "href": "https://api-dev.ibercheck.net/user/1"
           },
           "sale": {
-            "href": "https://api_dev.ibercheck.net/user/1/sale"
+            "href": "https://api-dev.ibercheck.net/user/1/sale"
           }
         },
         "id": "1",
