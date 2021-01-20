@@ -1,6 +1,6 @@
 # WebHooks
 
-> To retrieve the `access_token` use this code:
+> To register a new `webhook` use this code:
 
 ```http
 PATCH /affiliate/YOUR_AFFILIATE_NAME HTTP/1.1
