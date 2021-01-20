@@ -24,9 +24,6 @@ curl "https://api_dev.ibercheck.net/affiliate/YOUR_AFFILIATE_NAME" \
  -d '{"webhook_url": "URL TO YOUR ENDPOINT"}'
 ```
 
-> Make sure to replace `YOUR_AFFILIATE_NAME` and `YOUR IBERCHECK ACCESS TOKEN` with the values obtained after perform
-> the Authentication.
-
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/hal+json
