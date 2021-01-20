@@ -38,7 +38,7 @@ Content-Type: application/hal+json
   "capitalize_enabled": true,
   "enabled": true,
   "webhook_url": "URL TO YOUR ENDPOINT",
-  "webhook_format": "api_v1"
+  "webhook_format": "api_v1",
   "_links": {
     "self": {
       "href": "https://api_dev.ibercheck.net/affiliate/YOUR_AFFILIATE_NAME"
